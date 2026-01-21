@@ -9,6 +9,10 @@ This application automatically identify the walking direction of a horse in year
 
 ## Running Source Code
 
+```
+pip install -r requirements.txt
+python main.py
+```
 
 
 ## Making Single Exe file
