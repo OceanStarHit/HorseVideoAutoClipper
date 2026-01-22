@@ -7,6 +7,8 @@ This application automatically identify the walking direction of a horse in year
 ![teaser image](teaser.png)
 
 
+Sample horse videos can be downloaded from [here](https://drive.google.com/drive/folders/1vpvZqH313YYjHVr6MA4gc0j96oMm-UyA?usp=sharing).
+
 ## Running Source Code
 
 ```
