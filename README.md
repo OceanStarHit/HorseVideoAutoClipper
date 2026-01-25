@@ -12,7 +12,7 @@ Sample horse videos can be downloaded from [here](https://drive.google.com/drive
 ## Running Source Code
 
 ```
-pip install -r requirements.txt
+bash install.sh
 python main.py
 ```
 

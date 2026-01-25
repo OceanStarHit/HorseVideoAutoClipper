@@ -376,6 +376,8 @@ def draw_motion_arrow(
 
 def draw_on_frame(
     frame,
+    total_frames,
+    frame_idx,
     horse_bboxes,
     person_bboxes,
     active_horse_bbox=None,
@@ -449,6 +451,21 @@ def draw_on_frame(
             cv2.circle(frame, (int(x), int(y)), 5, (0, 0, 255), -1)
 
     # ----------------------------
+    # Frame idx label
+    # ----------------------------
+    label = f"Frame {frame_idx} / {total_frames}"
+    color = (255, 0, 0)
+    cv2.putText(
+        frame,
+        label,
+        (20, 40),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        color,
+        2,
+    )
+
+    # ----------------------------
     # Motion label
     # ----------------------------
     if motion_valid:
@@ -461,7 +478,7 @@ def draw_on_frame(
     cv2.putText(
         frame,
         label,
-        (20, 40),
+        (20, 80),
         cv2.FONT_HERSHEY_SIMPLEX,
         1,
         color,

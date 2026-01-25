@@ -1,5 +1,6 @@
 import time
 import cv2
+import torch
 
 from engine.functions import (
     detect_foreground_objects,
@@ -25,7 +26,6 @@ MAX_PREVIEW_WIDTH = 960
 MAX_PREVIEW_HEIGHT = 720
 SHOW_INLIERS = True
 
-
 class Processor:
     def __init__(
         self,
@@ -40,6 +40,8 @@ class Processor:
         self.scale = scale
         self.preview = preview
         self.log = logger or (lambda *_: None)
+        
+        self.log("GPU Name:" + torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU detected")
 
         self.log("🤖 Processor initialized")
         self.log(f"📐 imgsz={imgsz}, scale={scale}")
@@ -177,10 +179,10 @@ class Processor:
                 "confidence": confidence,
             })
 
-            self.log(
-                f"🔄 {frame_idx:05d} | "
-                f"dx_n={dx_norm:.3f} | dir={direction} | c={confidence:.2f}"
-            )
+            # self.log(
+            #     f"🔄 {frame_idx:05d} | "
+            #     f"dx_n={dx_norm:.3f} | dir={direction} | c={confidence:.2f}"
+            # )
 
             # ---------------------------------
             # 5️⃣ Preview
@@ -201,6 +203,8 @@ class Processor:
 
                 draw_on_frame(
                     frame=frame,
+                    total_frames=video_info.frame_count,
+                    frame_idx=frame_idx,
                     horse_bboxes=horse_bboxes,
                     person_bboxes=person_bboxes,
                     active_horse_bbox=horse_bbox,
@@ -212,7 +216,7 @@ class Processor:
                 )
 
                 cv2.imshow(
-                    "BG Motion Estimation",
+                    "Processing " + video_info.path,
                     resize_for_preview(
                         frame,
                         MAX_PREVIEW_WIDTH,
