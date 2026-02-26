@@ -9,10 +9,19 @@ This desktop application automatically identify the walking direction of a horse
 
 Sample horse videos can be downloaded from [here](https://drive.google.com/drive/folders/1vpvZqH313YYjHVr6MA4gc0j96oMm-UyA?usp=sharing).
 
+## Creating Env in Win 11
+
+```
+conda create -n HorseVideoAutoClipper_Env python=3.10
+conda activate HorseVideoAutoClipper_Env
+
+python -m pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+```
+
 ## Running Source Code
 
 ```
-bash install.sh
 python main.py
 ```
 
